@@ -6,22 +6,38 @@ class SayaTubeVideo
     private int id;
     private string title;
     private int playCount;
+    private const int MAX_PLAYCOUNT = 25000000;
 
     public SayaTubeVideo(string title)
     {
+        if (title == null) throw new ArgumentNullException("Judul video tidak boleh null");
+        if (title.Length > 200) throw new ArgumentException("Judul video maksimal 200 karakter");
+
         Random rand = new Random();
-        this.id = rand.Next(10000, 99999); // Generate 5-digit ID
+        this.id = rand.Next(10000, 99999); // Generate ID 5 digit
         this.title = title;
         this.playCount = 0;
     }
 
     public void IncreasePlayCount(int count)
     {
-        if (count < 0)
+        if (count < 0 || count > MAX_PLAYCOUNT)
         {
-            throw new ArgumentException("Play count tidak boleh negatif");
+            Console.WriteLine("Error: Play count maksimal 25.000.000 per panggilan dan tidak boleh bilangan negatif.");
+            return;
         }
-        playCount += count;
+
+        try
+        {
+            checked
+            {
+                playCount += count;
+            }
+        }
+        catch (OverflowException)
+        {
+            Console.WriteLine("Error: Play count melebihi batas integer.");
+        }
     }
 
     public void PrintVideoDetails()
@@ -47,21 +63,23 @@ class SayaTubeUser
     private int id;
     private string Username;
     private List<SayaTubeVideo> uploadedVideos;
+    private const int MAX_USERNAME_LENGTH = 100;
 
     public SayaTubeUser(string username)
     {
+        if (username == null) throw new ArgumentNullException("Username tidak boleh null");
+        if (username.Length > MAX_USERNAME_LENGTH) throw new ArgumentException("Username maksimal 100 karakter");
+
         Random rand = new Random();
-        this.id = rand.Next(10000, 99999); // Generate 5-digit ID
+        this.id = rand.Next(10000, 99999);
         this.Username = username;
         this.uploadedVideos = new List<SayaTubeVideo>();
     }
 
     public void AddVideo(SayaTubeVideo video)
     {
-        if (video == null)
-        {
-            throw new ArgumentNullException("Video tidak boleh null");
-        }
+        if (video == null) throw new ArgumentNullException("Video tidak boleh null");
+
         uploadedVideos.Add(video);
     }
 
@@ -78,7 +96,7 @@ class SayaTubeUser
     public void PrintAllVideoPlaycount()
     {
         Console.WriteLine($"User: {Username}");
-        for (int i = 0; i < uploadedVideos.Count; i++)
+        for (int i = 0; i < uploadedVideos.Count && i < 8; i++)
         {
             Console.WriteLine($"Video {i + 1} judul: {uploadedVideos[i].GetTitle()}");
         }
@@ -93,26 +111,29 @@ class Jurnal6_2211104012
 
         List<string> filmList = new List<string>
         {
-            "Review Film oleh Praktikan: Inception",
-            "Review Film oleh Praktikan: Interstellar",
-            "Review Film oleh Praktikan: The Dark Knight",
-            "Review Film oleh Praktikan: Parasite",
-            "Review Film oleh Praktikan: The Matrix",
-            "Review Film oleh Praktikan: Avenger: Endgame",
-            "Review Film oleh Praktikan: Spiderman: No Way Home",
-            "Review Film oleh Praktikan: Joker",
-            "Review Film oleh Praktikan: The Godfather",
-            "Review Film oleh Praktikan: Fight Club"
+            "Review Film Interstellar oleh Nadiaputri",
+            "Review Film Inception oleh Nadiaputri",
+            "Review Film The Dark Knight oleh Nadiaputri",
+            "Review Film Parasite oleh Nadiaputri",
+            "Review Film The Godfather oleh Nadiaputri",
+            "Review Film Whiplash oleh Nadiaputri",
+            "Review Film Fight Club oleh Nadiaputri",
+            "Review Film Joker oleh Nadiaputri",
+            "Review Film Titanic oleh Nadiaputri",
+            "Review Film Forrest Gump oleh Nadiaputri"
         };
 
         foreach (var film in filmList)
         {
             SayaTubeVideo video = new SayaTubeVideo(film);
             user.AddVideo(video);
-            video.IncreasePlayCount(new Random().Next(1000, 10000)); // Simulasi jumlah views
         }
 
         user.PrintAllVideoPlaycount();
-        Console.WriteLine($"Total Play Count: {user.GetTotalVideoPlayCount()}");
+        Console.WriteLine($"Total play count: {user.GetTotalVideoPlayCount()}");
+
+        // Uji precondition dengan nilai play count yang salah
+        SayaTubeVideo testVideo = new SayaTubeVideo("Test Video");
+        testVideo.IncreasePlayCount(30000000); // Melebihi batas
     }
 }
