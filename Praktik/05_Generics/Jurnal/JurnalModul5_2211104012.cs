@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 class Penjumlahan
 {
@@ -11,7 +12,33 @@ class Penjumlahan
     }
 }
 
-class JurnalModul5_2211104012
+class SimpleDataBase<T>
+{
+    private List<T> storedData;
+    private List<DateTime> inputDates;
+
+    public SimpleDataBase()
+    {
+        storedData = new List<T>();
+        inputDates = new List<DateTime>();
+    }
+
+    public void AddNewData(T data)
+    {
+        storedData.Add(data);
+        inputDates.Add(DateTime.UtcNow);
+    }
+
+    public void PrintAllData()
+    {
+        for (int i = 0; i < storedData.Count; i++)
+        {
+            Console.WriteLine($"Data {i + 1} berisi: {storedData[i]}, yang disimpan pada waktu UTC: {inputDates[i]}");
+        }
+    }
+}
+
+class Program
 {
     static void Main()
     {
@@ -24,5 +51,13 @@ class JurnalModul5_2211104012
 
         var hasil = penjumlahan.JumlahTigaAngka(angka1, angka2, angka3);
         Console.WriteLine("Hasil penjumlahan: " + hasil);
+
+        // Implementasi SimpleDataBase
+        SimpleDataBase<float> database = new SimpleDataBase<float>();
+        database.AddNewData(angka1);
+        database.AddNewData(angka2);
+        database.AddNewData(angka3);
+
+        database.PrintAllData();
     }
 }
