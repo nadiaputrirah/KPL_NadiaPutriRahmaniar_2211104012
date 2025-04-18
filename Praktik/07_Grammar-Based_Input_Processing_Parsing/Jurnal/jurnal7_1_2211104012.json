@@ -1,0 +1,21 @@
+{
+    "firstName": "Nadia",
+    "lastName": "Putri Rahmaniar",
+    "gender": "female",
+    "age": 21,
+    "address": {
+      "streetAddress": "JL krapyak",
+      "city": "Purwokerto",
+      "state": "Central Java"
+    },
+    "courses": [
+      {
+        "code": "CRI2C4",
+        "name": "Konstruksi Perangkat Lunak"
+      },
+      {
+        "code": "CRI2XX",
+        "name": "Kecerdasan Buatan"
+      }
+    ]
+  }

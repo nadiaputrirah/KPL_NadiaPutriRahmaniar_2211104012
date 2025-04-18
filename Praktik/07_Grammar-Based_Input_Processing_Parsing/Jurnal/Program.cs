@@ -1,0 +1,9 @@
+﻿using jurnal7_2211104012;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        DataMahasiswa2211104012.ReadJSON();
+    }
+}
