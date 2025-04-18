@@ -1,0 +1,48 @@
+{
+    "members": [
+      {
+        "firstName": "NIta",
+        "lastName": "Fitrotul Mar'ah",
+        "gender": "Female",
+        "age": 21,
+        "nim": "2211104005"
+      },
+      {
+        "firstName": "Muhammad",
+        "lastName": "Edgar Nadhif",
+        "gender": "Male",
+        "age": 21,
+        "nim": "2211104019"
+      },
+      {
+        "firstName": "Ahmad",
+        "lastName": "Junaidi",
+        "gender": "Male",
+        "age": 21,
+        "nim": "2211104002"
+      },
+      {
+        "firstName": "Rafli",
+        "lastName": "Dafin kamil",
+        "gender": "Male",
+        "age": 22,
+        "nim": "2211104018"
+      },
+      {
+        "firstName": "Muhammad",
+        "lastName": "Dhimas Afrizal",
+        "gender": "Male",
+        "age": 21,
+        "nim": "2211104023"
+      },
+      {
+        "firstName": "Alfian",
+        "lastName": "Mutakim",
+        "gender": "Male",
+        "age": 21,
+        "nim": "2211104000"
+      }
+    ]
+  }
+  
+  
