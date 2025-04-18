@@ -1,0 +1,14 @@
+{
+    "lang": "en",
+    "transfer": {
+      "threshold": 10000000,
+      "low_fee": 4000,
+      "high_fee": 10000
+    },
+    "methods": [ "BRIVA", "QRIS", "LinkAja" ],
+    "confirmation": {
+      "en": "yes",
+      "id": "ya"
+    }
+  }
+  
